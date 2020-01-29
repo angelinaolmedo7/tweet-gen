@@ -29,7 +29,11 @@ def frequency(fileName, target):
     return histogram(fileName)[target]
 
 
+def sample(fileName):
+    return random.choice(list(histogram(fileName).keys()))
+
+
 if __name__ == '__main__':
-    print(histogram(str(sys.argv[1])))
     print(unique_words(str(sys.argv[1])))
     print(frequency(str(sys.argv[1]), str(sys.argv[2])))
+    print(sample(str(sys.argv[1])))
