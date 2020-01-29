@@ -1,5 +1,6 @@
 import sys
 import random
+import string
 
 
 def histogram(fileName):
@@ -9,7 +10,9 @@ def histogram(fileName):
 
     for line in fileLines:
         for word in line.split():
-            i = word.lower()
+            # strip punctuation/capitals
+            i = word.lower().translate(
+                str.maketrans('', '', string.punctuation))
             if i in histogram:
                 histogram[i] = histogram[i] + 1
             else:
