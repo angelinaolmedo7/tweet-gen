@@ -2,7 +2,7 @@ import sys
 import random
 
 
-def getHist(fileName):
+def histogram(fileName):
     textFile = open(fileName, "r")
     fileLines = textFile.readlines()
     histogram = {}
@@ -18,5 +18,15 @@ def getHist(fileName):
     return histogram
 
 
+def unique_words(fileName):
+    return len(histogram(fileName))
+
+
+def frequency(fileName, target):
+    return histogram(fileName)[target]
+
+
 if __name__ == '__main__':
-    print(getHist(str(sys.argv[1])))
+    print(histogram(str(sys.argv[1])))
+    print(unique_words(str(sys.argv[1])))
+    print(frequency(str(sys.argv[1]), str(sys.argv[2])))
