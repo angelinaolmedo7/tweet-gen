@@ -48,9 +48,27 @@ def weighted_sample(fileName, sampleCount=1):
 
     weighted_choice = choice(list(histogram(fileName).keys()), sampleCount,
                              p=probability_list)
-    print(list(histogram(fileName).keys()))
-    print(probability_list)
+    # print(list(histogram(fileName).keys()))
+    # print(probability_list)
     return weighted_choice
+
+
+def weighted_phrase(fileName, word_count=5, sentenct_structure=True):
+    """
+    Return a weighted sampling of the original text.
+
+    Defaults to a sentence structure with capitalized first letter
+    and period at the end.
+    """
+    phrase = ""
+    words = weighted_sample(fileName, word_count)
+    for word in words:
+        phrase += word + " "
+    phrase = phrase.strip()
+    if sentenct_structure:
+        phrase = phrase.capitalize()
+        phrase += "."
+    return phrase
 
 
 def test_weight(fileName, sampleSize):
