@@ -88,7 +88,7 @@ def test_weight(fileName, sampleSize):
 
 
 if __name__ == '__main__':
-    print(unique_words(str(sys.argv[1])))
+    # print(unique_words(str(sys.argv[1])))
     print(frequency(str(sys.argv[1]), str(sys.argv[2])))
     print(sample(str(sys.argv[1])))
     print(weighted_sample(str(sys.argv[1])))
