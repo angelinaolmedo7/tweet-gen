@@ -135,6 +135,17 @@ class LinkedList(object):
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
 
+    def replace(self, item, new_item):
+        """Replace item with new_item."""
+        node = self.head  # O(1) time to assign variable
+        while node is not None:  # Up to n iterations
+            if item == node.data:  # O(1) time for comparison
+                node.data = new_item  # O(1) time to assign variable
+                return
+            # Skip to next node to advance forward in linked list
+            node = node.next  # O(1) time to reassign variable
+        raise ValueError('Item not found: {}'.format(item))  # O(1) error
+
 
 def test_linked_list():
     ll = LinkedList()
