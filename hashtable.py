@@ -75,20 +75,19 @@ class HashTable(object):
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
         TODO: Running time: O(n):
-                    O(n) for total number of values in all buckets
+                    O(n) for total number of values in the designated bucket
         """
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
-        for bucket in self.buckets:
-            for dict_key, value in bucket.items():
-                if key == dict_key:
-                    return True
+        ind = self._bucket_index(key)
+        if self.buckets[ind].find(lambda item: item[0] == key) is not None:
+            return True
         return False
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
         TODO: Running time: O(n):
-                    O(n) for total number of values in all buckets
+                    O(n) for total number of values in target bucket
                         in worst case, where the value is not extant or
                         the final value in the final bucket
                     O(1) if the target value is the first value checked
@@ -98,18 +97,18 @@ class HashTable(object):
         # TODO: If found, return value associated with given key
         # TODO: Otherwise, raise error to tell user get failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
-        for bucket in self.buckets:
-            for dict_key, value in bucket.items():
-                if key == dict_key:
-                    return value
+        ind = self._bucket_index(key)
+        value = self.buckets[ind].find(lambda item: item[0] == key)
+        if value is not None:
+            return value[1]
         raise KeyError('Key not found: {}'.format(key))
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
         TODO: Running time: O(n):
-                    O(n) for total number of values in all buckets
+                    O(n) for total number of values in target bucket
                         in worst case, where the value is not already
-                        extant or is the final value in the final bucket
+                        extant or is the final value in the bucket
                     O(1) if the target value is already extant and is
                     the first value checked
         """
@@ -118,17 +117,18 @@ class HashTable(object):
         # TODO: If found, update value associated with given key
         # TODO: Otherwise, insert given key-value entry into bucket
         ind = self._bucket_index(key)
-        if self.buckets[ind].find(lambda item: item[0] == key) is not None:
-            self.buckets[ind].replace(self.buckets[ind].find(lambda item: item[0] == key), (key, value))
+        extant_value = self.buckets[ind].find(lambda item: item[0] == key)
+        if extant_value is not None:
+            self.buckets[ind].replace(extant_value, (key, value))
         else:
             self.buckets[ind].append((key, value))
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
         TODO: Running time: O(n):
-                    O(n) for total number of values in all buckets
+                    O(n) for total number of values in the target bucket
                         in worst case, where the value does not exist
-                        or is the final value in the final bucket
+                        or is the final value in the bucket
                     O(1) if the target value is the first value checked
         """
         # TODO: Find bucket where given key belongs
@@ -137,8 +137,9 @@ class HashTable(object):
         # TODO: Otherwise, raise error to tell user delete failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
         ind = self._bucket_index(key)
-        if self.buckets[ind].find(lambda item: item[0] == key) is not None:
-            self.buckets[ind].delete(self.buckets[ind].find(lambda item: item[0] == key))
+        value = self.buckets[ind].find(lambda item: item[0] == key)
+        if value is not None:
+            self.buckets[ind].delete(value)
         else:
             raise KeyError('Key not found: {}'.format(key))
 
