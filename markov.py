@@ -1,5 +1,6 @@
 from dictogram import Dictogram
 import random
+from usernameGenerator import names
 from numpy.random import choice
 import string
 
@@ -48,10 +49,13 @@ class MarkovChain:
 
             sentence.append(choice(list(probability_dict.keys()), 1, p=prob_list)[0])
 
-        simple_sentence = ""
-        for i in sentence:
-            simple_sentence += i + " "
-        simple_sentence = simple_sentence.capitalize().strip() + "."
+        simple_sentence = sentence[0].capitalize() + " "
+        for i in range(1, len(sentence)):
+            wrd = sentence[i]
+            if (wrd == "i" or wrd == "i'm" or wrd.capitalize() in names):
+                wrd = wrd.capitalize()
+            simple_sentence += wrd + " "
+        simple_sentence = simple_sentence.strip() + "."
         return simple_sentence
 
     def print_chain(self):
@@ -73,8 +77,8 @@ class MarkovChain:
         return words_list
 
 
-markov_chain = MarkovChain(["one", "fish", "two", "fish", "red", "fish", "blue", "fish"])
-taz_chain = MarkovChain(MarkovChain.read_text_file("taz_balance_10.txt"))
+# markov_chain = MarkovChain(["one", "fish", "two", "fish", "red", "fish", "blue", "fish"])
+# taz_chain = MarkovChain(MarkovChain.read_text_file("taz_murderOnTheRockportLimited.txt"))
 # markov_chain.walk(5)
 # markov_chain.print_chain()
-print(taz_chain.walk(10))
+# print(taz_chain.walk(10))

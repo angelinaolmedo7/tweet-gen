@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Taz Tweets</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Sacramento&display=swap" rel="stylesheet">
+    <!-- CUSTOM STYLES -->
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+    {% include 'partials/navbar.html' %}
+    <div class='container'>
+        {% block body %}
+        {% endblock %}
+    </div>
+    <!-- Footer -->
+    <footer class='page-footer font-small blue pt-4'>
+        <div class='row Fixed pt-5' style='text-align: center'>
+            <div class='col-sm-12'>
+                <i>Murder on the Rockport Limited</i> transcripts sourced from <a href="https://tazscripts.tumblr.com/tazscripts">Tazscripts</a>
+            </div>
+        </div>
+        <div class="row pt-5 pb-5">
+            <!-- spacer -->
+            <div class='col-sm-12 pb-5 pt-5'></div>
+            <div class='col-sm-12 pb-5 pt-5'></div>
+        </div>
+    </footer>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+</body>
+</html>

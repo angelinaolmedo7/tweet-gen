@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block body %}
+</br>
+    <p>Refresh for more!</p>
+<div class='row pt-12'>
+{% for tweet in tweets %}
+<div class='col pt-3'>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">@{{ tweet.user }} tweeted:</h5>
+            <p class="card-text">{{ tweet.content }}</p>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
